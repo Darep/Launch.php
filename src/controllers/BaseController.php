@@ -52,7 +52,7 @@ class BaseController
     protected function httpPostRequired()
     {
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            // TODO: this
+            $this->NotFound();
         }
     }
 }
