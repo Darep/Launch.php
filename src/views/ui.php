@@ -22,8 +22,8 @@ function site_header($title = '')
 
     <title><?php if (!empty($title)) echo $title, ' &ndash; ' ?></title>
    
-    <link rel="stylesheet" href="<?php echo SITE_BASE ?>css/style.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<?php echo SITE_BASE ?>css/enhance.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo SITE_BASE ?>content/css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo SITE_BASE ?>content/css/enhance.css" type="text/css" media="screen" />
 </head>
 <body>
 
