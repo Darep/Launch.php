@@ -34,10 +34,22 @@ class BaseService
      */
     protected function connect()
     {
-        $dsn = "mysql:dbname=". DB_NAME .";host=". DB_HOST;
+        switch (DB_TYPE) {
+            case 'mysql':
+                $dsn = 'mysql:dbname='. DB_NAME .';host='. DB_HOST;
 
-        self::$dbh = new PDO($dsn, DB_USER, DB_PASS, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
-        self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$dbh = new PDO($dsn, DB_USER, DB_PASS, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+                self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                break;
+            
+            case 'sqlite':
+            default:
+                $dsn = 'sqlite:'. DB_FILE;
+                
+                self::$dbh = new PDO(self::dsn);
+                self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);              
+                break;
+        }
     }
 
 
