@@ -16,7 +16,7 @@ if (!session_start('SESSION_NAME')) {
     exit;
 }
 
-
+$GLOBALS['debug'] = true;
 error_reporting(-1); // report EVERYTHING
 
 // Temporary timer for development

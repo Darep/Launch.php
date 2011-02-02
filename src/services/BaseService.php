@@ -46,7 +46,7 @@ class BaseService
             default:
                 $dsn = 'sqlite:'. DB_FILE;
                 
-                self::$dbh = new PDO(self::dsn);
+                self::$dbh = new PDO($dsn);
                 self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);              
                 break;
         }
@@ -70,8 +70,6 @@ class BaseService
         
         die();
     }
-    
-    
 }
 
 

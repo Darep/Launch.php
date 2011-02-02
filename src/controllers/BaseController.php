@@ -77,3 +77,11 @@ function json($success, $message = '', $html = '')
         )
     );
 }
+
+
+function json2($success, $array)
+{
+    header('Content-type: application/json');
+    $array = array_merge(array('Success' => $success), $array);
+    return json_encode($array);
+}
