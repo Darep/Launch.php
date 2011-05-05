@@ -10,7 +10,7 @@ if (get_magic_quotes_gpc()) die('PHP\'s Magic quotes are on! Disable them.');
 
 define('SITE_BASE', str_replace('index.php', '', $_SERVER['PHP_SELF']));
 
-if (!session_start('SESSION_NAME2')) {
+if (!session_start(SESSION_NAME)) {
     header('Location: '. SITE_BASE .'error/session/');
     exit;
 }
@@ -40,7 +40,7 @@ if (substr($url, -1) == '/') $url = substr($url, 0, -1);
 // DEBUG:
 //header('Content-type: text/plain'); print $url; exit;
 
-// i18n
+// I18N
 $language = 'en';
 $langs = array();
 
@@ -61,7 +61,7 @@ foreach ($langs as $lang => $val) {
         //$language = 'fi';
     }
     else if (strpos($lang, 'de') === 0) {
-        $language = 'de';
+        //$language = 'de';
     }
     else if (strpos($lang, 'en') === 0) {
         // show English site

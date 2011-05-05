@@ -1,11 +1,25 @@
 <?php
-/*
+/*!
  * index.php
  * Starter for ajk's MVC framework
  *
  */
 
+# Config
 define('SESSION_NAME', '===UNTITLED_SESSION===');
+
+# URL patterns
+$urlpatterns = array(
+    
+    // routes: pattern, controller, (action)
+    // pattern can contain ?P<action> which will be the action
+    
+    array('/^$/',                    'Default'),
+    array('/^login$/',               'Account', 'Login'),
+    array('/^logout$/',              'Account', 'Logout'),
+    array('/^error\/(?P<action>)$/', 'Error')
+);
+
 
 # Debugging
 $GLOBALS['debug'] = true;
@@ -21,18 +35,6 @@ $GLOBALS['logged_in'] = false;
 if (!empty($_SESSION['user_id'])) {
     $GLOBALS['logged_in'] = true;
 }
-
-# URL patterns
-$urlpatterns = array(
-    
-    // routes: pattern, controller, (action)
-    // pattern can contain ?P<action> which will be the action
-    
-    array('/^$/',                    'Default'),
-    array('/^login$/',               'Account', 'Login'),
-    array('/^logout$/',              'Account', 'Logout'),
-    array('/^error\/(?P<action>)$/', 'Error')
-);
 
 # Main
 include './core.php';
