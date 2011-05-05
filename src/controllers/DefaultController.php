@@ -6,7 +6,6 @@
  */
 
 include './controllers/BaseController.php';
-include './services/UserService.php';
 
 class DefaultController extends BaseController
 {

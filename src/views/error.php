@@ -1,5 +1,5 @@
-<?php site_header($list['name']); ?>
+<?php site_header() ?>
 
-lolz, error.php executed
+Some kind of an error!
 
 <?php site_footer(); ?>

@@ -1,5 +1,6 @@
-<?php site_header();?>
+<?php site_header()?>
 
-<h1>Frontpage</h1>
+<h1>Hello world!</h1>
+<p>Lorem ipsum dolor sit amet.</p>
 
-<?php site_footer(); ?>
+<?php site_footer() ?>

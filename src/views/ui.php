@@ -8,8 +8,8 @@
  */
 
 
-/**
- * Print the HTML 
+/*!
+ * Print the site header. To be used with each page/view
  *
  * @param $title Page title
  */
@@ -20,10 +20,9 @@ function site_header($title = '')
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-    <title><?php if (!empty($title)) echo $title, ' &ndash; ' ?></title>
+    <title><?php if (!empty($title)) echo $title, ' &ndash; ' ?>Launch.php</title>
    
     <link rel="stylesheet" href="<?php echo SITE_BASE ?>content/css/style.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<?php echo SITE_BASE ?>content/css/enhance.css" type="text/css" media="screen" />
 </head>
 <body>
 
@@ -34,14 +33,17 @@ function site_header($title = '')
 }
 
 
-function site_footer($show_text = true)
+/*!
+ * Print the site footer. To be used with each page/view
+ */
+function site_footer()
 { ?>
 
+</div><!-- #wrap -->
 
 </body>
 </html>
 
     <?php
-    
 }
 
