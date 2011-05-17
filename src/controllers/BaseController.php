@@ -55,6 +55,16 @@ class BaseController
             $this->NotFound();
         }
     }
+
+    protected function renderView($view_file, $view_model = null)
+    {
+        if (!empty($view_model)) {
+            extract($view_model);
+        }
+        
+        include './views/ui.php';
+        include $view_file;
+    }
 }
 
 
