@@ -63,7 +63,7 @@ class BaseController
         }
         
         include './views/ui.php';
-        include $view_file;
+        include './views/'. $view_file;
     }
 }
 

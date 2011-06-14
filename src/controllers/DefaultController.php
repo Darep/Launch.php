@@ -12,9 +12,7 @@ class DefaultController extends BaseController
     public function Index()
     {
     
-        # Move to view
-        include './views/ui.php';
-        include './views/frontpage.php';
+        $this->renderView('frontpage.php');
     }
 
 }
