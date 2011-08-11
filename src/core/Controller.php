@@ -56,7 +56,7 @@ class Controller
             extract($view_model);
         }
         
-        include './views/ui.php';
+        include './core/ui.php';
         include './views/'. $view_file;
     }
 }
