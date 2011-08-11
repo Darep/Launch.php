@@ -7,53 +7,16 @@
  */
 
 
-$config_file = './config.php';
-
-if (!file_exists($config_file))
-{
-    die('No \'config.php\' file found');
-}
-
-require_once($config_file);
-
-
 class Service
 {
-    protected static $dbh = false;
-    
     function __construct()
     {
-        $this->connect();
     }
 
-
     /**
-     *
-     * @note No need to error check here - the child classes should enclose call to connect with try-catch
-     */
-    protected function connect()
-    {
-        switch (DB_TYPE) {
-            case 'mysql':
-                $dsn = 'mysql:dbname='. DB_NAME .';host='. DB_HOST;
-
-                self::$dbh = new PDO($dsn, DB_USER, DB_PASS, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
-                self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                break;
-            
-            case 'sqlite':
-            default:
-                $dsn = 'sqlite:'. DB_FILE;
-                
-                self::$dbh = new PDO($dsn);
-                self::$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);              
-                break;
-        }
-    }
-
-
-    /**
-     * 
+     * Print out an error message and debug information
+	 *
+	 * @param string $msg Message to be printed
      */
     protected function fatal_error($msg)
     {
@@ -68,6 +31,26 @@ class Service
         echo "</pre>";
         
         die();
+    }
+
+    /**
+     * Create a SQL "UPDATE ..." string based on a bunch of arrays.
+     * 
+     * @param array $data Data to be updated as (key = column => value = data)
+     * @param string $updates SQL UPDATE string
+     * @param array $params PDO parameters
+     */
+    protected function sqlUpdateString($data, &$updates, &$params)
+    {
+        foreach ($data as $key => $value)
+        {
+            if (!empty($updates))
+            {
+                $updates .= ', ';
+            }
+            $updates .= "$key = :$key";
+            $params[":$key"] = $value;
+        }
     }
 }
 

@@ -1,0 +1,11 @@
+; config.ini
+
+; SQLite
+DB_TYPE = 'sqlite'
+DB_FILE = './local.db'
+
+; MySQL
+;DB_TYPE = 'mysql'
+;DB_HOST = 'localhost'
+;DB_USER = 'user'
+;DB_PASS = 'password'

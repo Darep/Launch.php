@@ -5,7 +5,16 @@
  *
  */
 
-# Security
+/* ------------------------------------------------------------------------- */
+// Security & misc. starting stuff
+
+$config_file = './config.ini';
+
+if (!file_exists($config_file)) {
+	// TODO: bette instructions for fixing
+    die('Config file not found! (should be in: '. $config_file .')';
+}
+
 if (get_magic_quotes_gpc()) die('PHP\'s Magic quotes are on! Disable them.');
 
 define('SITE_BASE', str_replace('index.php', '', $_SERVER['PHP_SELF']));
@@ -17,6 +26,7 @@ if (!session_start(SESSION_NAME)) {
 
 
 /* ------------------------------------------------------------------------- */
+// URL parsing
 
 $url = $_SERVER['REQUEST_URI'];
 
@@ -40,7 +50,10 @@ if (substr($url, -1) == '/') $url = substr($url, 0, -1);
 // DEBUG:
 //header('Content-type: text/plain'); print $url; exit;
 
+
+/* ------------------------------------------------------------------------- */
 // I18N
+
 $language = 'en';
 $langs = array();
 
@@ -69,7 +82,9 @@ foreach ($langs as $lang => $val) {
 }
 
 
-// ENGINE
+/* ------------------------------------------------------------------------- */
+// Route engine
+
 $controller = null;
 $action = 'Index'; // default action
 $params = array();
@@ -84,13 +99,11 @@ foreach ($urlpatterns as $pattern) {
             }
         }
 
-        if (count($pattern) > 2)
-        {
+        if (count($pattern) > 2) {
             $action = $pattern[2];
         }
         
-        if (isset($params['action']))
-        {
+        if (isset($params['action'])) {
             $action = $params['action'];
         }
 
@@ -98,6 +111,36 @@ foreach ($urlpatterns as $pattern) {
     }
 }
 
+
+/* ------------------------------------------------------------------------- */
+// Data-access
+
+$pdo = null;
+$db_cfg = parse_ini_file($config_file);
+
+switch ($db_cfg['DB_TYPE']) {
+    case 'mysql':
+        $dsn = 'mysql:dbname='. $db_cfg['DB_NAME'] .';host='. $db_cfg['DB_HOST'];
+
+        $pdo = new PDO($dsn, $db_cfg['DB_USER'], $db_cfg['DB_PASS'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        break;
+    
+    default:
+    case 'sqlite':
+        $dsn = 'sqlite:'. $db_cfg['DB_FILE'];
+        
+        $pdo = new PDO($dsn);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            
+        break;
+}
+
+require_once './core/Dao.php';
+Dao::setPDO($pdo);
+
+
+/* ------------------------------------------------------------------------- */
+// Surrender control to a controller
 
 $access = true;
 
