@@ -1,7 +1,7 @@
 <?php
 /*!
- * index.php
- * Starter for ajk's MVC framework
+ * Starts the Launch.php framework
+ * Example application starter for Launch.php
  *
  */
 
@@ -37,4 +37,4 @@ if (!empty($_SESSION['user_id'])) {
 }
 
 # Main
-include './core.php';
+include './core/core.php';

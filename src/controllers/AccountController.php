@@ -5,25 +5,23 @@
  * Copyright (c) 2010-2011 Antti-Jussi Kovalainen
  */
 
-include './controllers/BaseController.php';
+include './core/Controller.php';
 include './services/UserService.php';
 
-class AccountController extends BaseController
+class AccountController extends Controller
 {
     public function LogIn()
     {
-        // TODO: log in
-    
-        # Move to view
-        include './views/ui.php';
-        include './views/login.php';
     }
 
-    // POST:
+	public function DoLogIn()
+	{
+        $this->httpPostRequired();
+		
+		
+	}
+	
     public function LogOut()
     {
-        $this->httpPostRequired();
-    
-        // TODO: log out
     }
 }

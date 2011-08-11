@@ -1,16 +1,16 @@
 <?php
-/**
- * User Class
+/*!
+ * Service for accessing and modifying user data 
+ * This is an example implementation of a simple user service, bundled with Launch.php
  *
- * User -model, creation of user etc.
+ * Copyright 2011, Launch.php
  */
 
-require_once('./services/BaseService.php');
+require_once('./core/Service.php');
 
 
-class UserService extends BaseService
+class UserService extends Service
 {
-    
     public function GetUser($id)
     {
         try

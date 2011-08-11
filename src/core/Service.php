@@ -17,10 +17,9 @@ if (!file_exists($config_file))
 require_once($config_file);
 
 
-class BaseService
+class Service
 {
     protected static $dbh = false;
-
     
     function __construct()
     {
@@ -58,7 +57,7 @@ class BaseService
      */
     protected function fatal_error($msg)
     {
-        // FIXME: give user server error 500 and save the information below to a log file
+        // TODO: if !debug, give user server error 500 and save the information below to a log file
         echo "<pre>Error!: $msg\n";
         
         $bt = debug_backtrace();
@@ -73,29 +72,15 @@ class BaseService
 }
 
 
-/* Exceptions
------------------------------------------------------------------------------ */
-
+// Exceptions:
 class NotImplemented extends Exception {}
 
 
-/*
-class MysqlStringEscaper
-{
-    function __get($value)
-    {
-        return mysql_real_escape_string($value);
-    }
-}
-$mstr = new MysqlStringEscaper;
-*/
-
-
-/* Useful functions
------------------------------------------------------------------------------ */
+// Useful service functions:
 
 // load_list takes a text file and turns it into a global array cached by APC
-function load_list($name) {
+function load_list($name)
+{
     global $$name;
     if(!$$name = apc_fetch($name)) {
         $$name = explode("\n",trim(file_get_contents($name.'.txt')));
@@ -104,8 +89,9 @@ function load_list($name) {
 }
 
 
-function log_put($string) {
-    $file = '/home/ajk/dblog.txt';
+function log_put($string)
+{
+    $file = 'dblog.txt';
     $contents = file_get_contents($file);
     file_put_contents($file, $contents . $string . "\n");
 }

@@ -5,9 +5,9 @@
  * Copyright (c) 2010-2011 Antti-Jussi Kovalainen
  */
 
-include './controllers/BaseController.php';
+include './core/Controller.php';
 
-class DefaultController extends BaseController
+class DefaultController extends Controller
 {
     public function Index()
     {

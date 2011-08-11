@@ -7,14 +7,11 @@
 
 if (empty($access)) exit;
 
-include './helpers/login.php';
-
-class BaseController
+class Controller
 {
     protected $params;
     protected $is_ajax;
     protected $method;
-
 
     function __construct($params)
     {
@@ -26,32 +23,29 @@ class BaseController
     }
 
 
-    function __destruct()
-    {
-    }
+// common pages:
 
-
+	
     public function NotFound()
     {
-        include './views/ui.php';
-        include './views/404.php';
+		$this->renderView('404.php');
         exit;
     }
 
     
     public function NoAuth()
     {
-        include './views/ui.php';
-        include './views/noauth.php';
+		$this->renderView('no-auth.php');
         exit;
     }
-    
-    
+
+
 // protected:
+
 
     protected function httpPostRequired()
     {
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        if ($this->method != 'POST') {
             $this->NotFound();
         }
     }
@@ -68,14 +62,13 @@ class BaseController
 }
 
 
-// functions
+// Useful controller functions:
 
 function redirect($link)
 {
     header('Location: ' . $link);
     exit;
 }
-
 
 function json($success, $message = '', $html = '')
 {
@@ -87,7 +80,6 @@ function json($success, $message = '', $html = '')
         )
     );
 }
-
 
 function json2($success, $array)
 {

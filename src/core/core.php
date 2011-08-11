@@ -99,7 +99,6 @@ foreach ($urlpatterns as $pattern) {
 }
 
 
-
 $access = true;
 
 if ($controller != null)
