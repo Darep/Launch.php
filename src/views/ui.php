@@ -1,10 +1,7 @@
 <?php
-/*
- * ui.php
- * Helper functions for views
- * site_header(), site_footer(), etc.
- *
- * (c) 2011 Antti-Jussi Kovalainen (www.ajk.im)
+/*!
+ * Common view template functions
+ * 
  */
 
 
