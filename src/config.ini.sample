@@ -7,5 +7,6 @@ DB_FILE = './local.db'
 ; MySQL
 ;DB_TYPE = 'mysql'
 ;DB_HOST = 'localhost'
+;DB_NAME = 'database'
 ;DB_USER = 'user'
 ;DB_PASS = 'password'

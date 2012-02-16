@@ -1,7 +1,7 @@
-# protect config.php
-<Files config.php>
-        Order allow,deny
-        Deny from all
+# protect config.ini
+<Files config.ini>
+    Order allow,deny
+    Deny from all
 </Files>
 
 # deny access to .svn
@@ -9,12 +9,12 @@ RedirectMatch 404 /\\.svn(/|$)
 
 <IfModule mod_rewrite.c>
         RewriteEngine On
-        RewriteBase /PROJECT/
+        RewriteBase /
 
         # Tell them where the favicon always is
-        #RewriteRule ^favicon\.ico$ /PROJECT/favicon.ico
+        #RewriteRule ^favicon\.ico$ /favicon.ico
 
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
-        RewriteRule . /PROJECT/index.php [L]
+        RewriteRule . /index.php [L]
 </IfModule>

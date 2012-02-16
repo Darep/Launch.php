@@ -2,7 +2,7 @@
 /*!
  * Launch.PHP core
  *
- * Version 0.8
+ * Version 0.8.1
  */
 
 /* ------------------------------------------------------------------------- */
@@ -11,8 +11,8 @@
 $config_file = './config.ini';
 
 if (!file_exists($config_file)) {
-	// TODO: bette instructions for fixing
-    die('Config file not found! (should be in: '. $config_file .')';
+	// TODO: instructions for fixing the problem
+    die('Config file not found! (path: '. $config_file .')');
 }
 
 if (get_magic_quotes_gpc()) die('PHP\'s Magic quotes are on! Disable them.');

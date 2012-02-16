@@ -30,11 +30,5 @@ ini_set('display_errors', '1');
 $startarray = explode(" ", microtime());
 $starttime = $startarray[1] + $startarray[0];
 
-# Module: Login
-$GLOBALS['logged_in'] = false;
-if (!empty($_SESSION['user_id'])) {
-    $GLOBALS['logged_in'] = true;
-}
-
 # Main
 include './core/core.php';
