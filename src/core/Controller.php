@@ -1,8 +1,8 @@
 <?php
 /*!
- * BaseController
+ * Launch.PHP controller base class
  *
- * Copyright (c) 2010-2011 Antti-Jussi Kovalainen
+ * Copyright (c) 2010-2012 Antti-Jussi Kovalainen
  */
 
 if (empty($access)) exit;
@@ -25,17 +25,17 @@ class Controller
 
 // common pages:
 
-	
+    
     public function notFound()
     {
-		$this->renderView('404.php');
+        $this->renderView('404.php');
         exit;
     }
 
     
     public function noAuth()
     {
-		$this->renderView('no-auth.php');
+        $this->renderView('no-auth.php');
         exit;
     }
 
@@ -73,6 +73,7 @@ function redirect($link)
 
 function json($success, $message = '', $html = '')
 {
+    header('Content-type: application/json');
     return json_encode(
         array(
             'Success' => $success,
