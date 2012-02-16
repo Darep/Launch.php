@@ -1,8 +1,8 @@
 <?php
 /*!
- * core.php
- * Core for Launch.php
+ * Launch.PHP core
  *
+ * Version 0.8
  */
 
 /* ------------------------------------------------------------------------- */
@@ -143,6 +143,7 @@ Dao::setPDO($pdo);
 // Surrender control to a controller
 
 $access = true;
+include './core/Controller.php';
 
 if ($controller != null)
 {
@@ -178,9 +179,8 @@ if ($controller != null)
 }
 else
 {
-    include './controllers/BaseController.php';
-    $c = new BaseController($params);
-    $c->NotFound();
+    $c = new Controller($params);
+    $c->notFound();
 }
 
 exit;

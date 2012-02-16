@@ -5,8 +5,7 @@
  * Copyright (c) 2010-2011 Antti-Jussi Kovalainen
  */
 
-include './core/Controller.php';
-include './services/UserService.php';
+include './services/ExampleUserService.php';
 
 class AccountController extends Controller
 {
@@ -17,8 +16,6 @@ class AccountController extends Controller
 	public function DoLogIn()
 	{
         $this->httpPostRequired();
-		
-		
 	}
 	
     public function LogOut()

@@ -17,7 +17,7 @@ class Controller
     {
         $this->params = $params;
         $this->is_ajax = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'));
-        if ($this->is_ajax) header('Cache-control: no-cache');
+        if ($this->is_ajax) header('Cache-control: no-cache'); // don't cache ajax responses
 
         $this->method = $_SERVER['REQUEST_METHOD'];
     }
@@ -26,14 +26,14 @@ class Controller
 // common pages:
 
 	
-    public function NotFound()
+    public function notFound()
     {
 		$this->renderView('404.php');
         exit;
     }
 
     
-    public function NoAuth()
+    public function noAuth()
     {
 		$this->renderView('no-auth.php');
         exit;
@@ -46,7 +46,7 @@ class Controller
     protected function httpPostRequired()
     {
         if ($this->method != 'POST') {
-            $this->NotFound();
+            $this->notFound();
         }
     }
 
@@ -62,7 +62,8 @@ class Controller
 }
 
 
-// Useful controller functions:
+/* Useful helpers for controllers :
+----------------------------------------------------------------------------- */
 
 function redirect($link)
 {

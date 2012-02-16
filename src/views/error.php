@@ -1,4 +1,4 @@
-<?php site_header() ?>
+<?php site_header('Error') ?>
 
 Some kind of an error!
 

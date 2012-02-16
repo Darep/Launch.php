@@ -1,6 +1,6 @@
 <?php
 /*!
- * Common view template functions
+ * Common view functions
  * 
  */
 
@@ -8,11 +8,12 @@
 /*!
  * Print the site header. To be used with each page/view
  *
+ * A function like this is much more efficient than including "header.php" and "footer.php" individually
+ *
  * @param $title Page title
  */
-function site_header($title = '')
-{ ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+function site_header($title = '') { ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -23,8 +24,10 @@ function site_header($title = '')
 </head>
 <body>
 
-<div id="wrap">
+<header>
+</header>
 
+<div id="wrap">
 
 <?php
 }
@@ -33,14 +36,15 @@ function site_header($title = '')
 /*!
  * Print the site footer. To be used with each page/view
  */
-function site_footer()
-{ ?>
+function site_footer() { ?>
 
-</div><!-- #wrap -->
+</div>
+
+<footer>
+</footer>
 
 </body>
 </html>
 
-    <?php
+<?php
 }
-

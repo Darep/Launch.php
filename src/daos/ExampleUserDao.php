@@ -1,7 +1,6 @@
 <?php
 /*!
- * User DAO
- * Data accessing and modification of users
+ * Example User DAO, included in the Launch.php core
  */
 
 // no need to include Dao.php, it is already included by core.php
