@@ -2,7 +2,7 @@
 /*!
  * Launch.PHP core
  *
- * Version 0.8.1
+ * Version 0.9
  */
 
 /* ------------------------------------------------------------------------- */
@@ -110,6 +110,9 @@ foreach ($urlpatterns as $pattern) {
         break;
     }
 }
+
+// include service base class
+require_once './core/Service.php';
 
 
 /* ------------------------------------------------------------------------- */

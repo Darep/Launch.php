@@ -1,7 +1,6 @@
 <?php
 /*!
  * Common view functions
- * 
  */
 
 
@@ -12,7 +11,8 @@
  *
  * @param $title Page title
  */
-function site_header($title = '') { ?>
+function site_header($title = '') {
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,6 +25,7 @@ function site_header($title = '') { ?>
 <body>
 
 <header>
+    <h1>Launch.php</h1>
 </header>
 
 <div id="wrap">
@@ -36,15 +37,22 @@ function site_header($title = '') { ?>
 /*!
  * Print the site footer. To be used with each page/view
  */
-function site_footer() { ?>
+function site_footer() {
+?>
 
 </div>
 
 <footer>
+    Footer
 </footer>
 
 </body>
 </html>
 
 <?php
+}
+
+
+function include_css() {
+
 }

@@ -1,8 +1,6 @@
 <?php
 /*!
  * Launch.PHP controller base class
- *
- * Copyright (c) 2010-2012 Antti-Jussi Kovalainen
  */
 
 if (empty($access)) exit;
@@ -11,13 +9,19 @@ class Controller
 {
     protected $params;
     protected $is_ajax;
+    protected $isAjax;
     protected $method;
 
     function __construct($params)
     {
         $this->params = $params;
+
         $this->is_ajax = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'));
-        if ($this->is_ajax) header('Cache-control: no-cache'); // don't cache ajax responses
+        $this->isAjax = $this->is_ajax;
+        
+        if ($this->is_ajax) {
+            header('Cache-control: no-cache'); // don't cache ajax responses
+        }
 
         $this->method = $_SERVER['REQUEST_METHOD'];
     }
@@ -59,10 +63,15 @@ class Controller
         include './views/ui.php';
         include './views/'. $view_file;
     }
+
+    protected function renderJson($view_model = array())
+    {
+        echo json($view_model);
+    }
 }
 
 
-/* Useful helpers for controllers :
+/* Helpers for controllers:
 ----------------------------------------------------------------------------- */
 
 function redirect($link)
@@ -71,21 +80,8 @@ function redirect($link)
     exit;
 }
 
-function json($success, $message = '', $html = '')
+function json($array)
 {
-    header('Content-type: application/json');
-    return json_encode(
-        array(
-            'Success' => $success,
-            'Message' => $message,
-            'Html' => $html
-        )
-    );
-}
-
-function json2($success, $array)
-{
-    header('Content-type: application/json');
-    $array = array_merge(array('Success' => $success), $array);
+    header('Content-Type: application/json');
     return json_encode($array);
 }

@@ -1,8 +1,6 @@
 <?php
 /*!
  * ErrorController
- *
- * Copyright (c) 2010-2011 Antti-Jussi Kovalainen
  */
 
 class ErrorController extends Controller
@@ -10,5 +8,7 @@ class ErrorController extends Controller
     // could not create a PHP session
     public function Session()
     {
+        // TODO: show a view
+        echo 'Could not create a PHP session';
     }
 }

@@ -1,9 +1,4 @@
 <?php
-/*!
- * Starts the Launch.php framework
- * Example application starter for Launch.php
- *
- */
 
 # Config
 define('SESSION_NAME', '===UNTITLED_SESSION===');
@@ -14,10 +9,10 @@ $urlpatterns = array(
     // routes: pattern, controller, (action)
     // pattern can contain ?P<action> which will be the action
     
-    array('/^$/',                    'Default'),
     array('/^login$/',               'Account', 'Login'),
     array('/^logout$/',              'Account', 'Logout'),
-    array('/^error\/(?P<action>)$/', 'Error')
+    array('/^error\/(?P<action>)$/', 'Error'),
+    array('/^$/',                  'Default')
 );
 
 

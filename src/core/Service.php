@@ -1,9 +1,7 @@
 <?php
-/**
- * @file
- * Abstract(ish) base class for services.
- *
- * Handles the connection and error reporting.
+/*!
+ * Service base class
+ * Mainly just contains helpers
  */
 
 

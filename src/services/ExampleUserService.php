@@ -5,7 +5,6 @@
  * Copyright 2011, Launch.php
  */
 
-require_once('./core/Service.php');
 require_once('./dao/ExampleUserDao.php');
 
 

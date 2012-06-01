@@ -1,8 +1,6 @@
 <?php
 /*!
  * DAO base class
- * Base class for all the DAOs.
- * 
  */
 
 class Dao
