@@ -13,8 +13,8 @@ class Service
 
     /**
      * Print out an error message and debug information
-	 *
-	 * @param string $msg Message to be printed
+     *
+     * @param string $msg Message to be printed
      */
     protected function fatal_error($msg)
     {
@@ -67,20 +67,4 @@ function load_list($name)
         $$name = explode("\n",trim(file_get_contents($name.'.txt')));
         apc_store($name,$$name);
     }
-}
-
-
-function log_put($string)
-{
-    $file = 'dblog.txt';
-    $contents = file_get_contents($file);
-    file_put_contents($file, $contents . $string . "\n");
-}
-
-
-function dump_array($arr)
-{
-    header('Content-type: text/plain');
-    var_dump($arr);
-    exit;
 }

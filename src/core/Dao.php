@@ -15,14 +15,14 @@ class Dao
         }
         
         if (!isset($pdo)) {
-			// TODO: print out recovery instructions for users
+            // TODO: print out recovery instructions for users
             throw new DomainException('No PDO object defined for DAO(s)! Critical failure!');
         }
         
         self::$dbh = $pdo;
     }
 
-	static public function setPDO(PDO $pdo)
+    static public function setPDO(PDO $pdo)
     {
         self::$dbh = $pdo;
     }

@@ -2,8 +2,14 @@
 /*!
  * Launch.PHP core
  *
- * Version 0.9
+ * Version 0.9.1
  */
+
+# Start timer for debugging
+if ($GLOBALS['debug']) {
+    $startarray = explode(" ", microtime());
+    $starttime = $startarray[1] + $startarray[0];
+}
 
 /* ------------------------------------------------------------------------- */
 // Security & misc. starting stuff
@@ -11,7 +17,7 @@
 $config_file = './config.ini';
 
 if (!file_exists($config_file)) {
-	// TODO: instructions for fixing the problem
+    // TODO: instructions for fixing the problem
     die('Config file not found! (path: '. $config_file .')');
 }
 
@@ -140,6 +146,11 @@ switch ($db_cfg['DB_TYPE']) {
 
 require_once './core/Dao.php';
 Dao::setPDO($pdo);
+
+
+/* ------------------------------------------------------------------------- */
+// Include modules
+include './modules.php';
 
 
 /* ------------------------------------------------------------------------- */
