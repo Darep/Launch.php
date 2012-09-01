@@ -75,28 +75,41 @@ if (substr($url, -1) == '/')
 /* ------------------------------------------------------------------------- */
 // Data-access
 
-$pdo = null;
+$dbh = null;
 $db_cfg = parse_ini_file($config_file);
 
 switch ($db_cfg['DB_TYPE']) {
     case 'mysql':
+        // TODO: check that PDO has mysql driver
         $dsn = 'mysql:dbname='. $db_cfg['DB_NAME'] .';host='. $db_cfg['DB_HOST'];
 
-        $pdo = new PDO($dsn, $db_cfg['DB_USER'], $db_cfg['DB_PASS'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $dbh = new PDO($dsn, $db_cfg['DB_USER'], $db_cfg['DB_PASS'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         break;
 
-    default:
     case 'sqlite':
         $dsn = 'sqlite:'. $db_cfg['DB_FILE'];
 
-        $pdo = new PDO($dsn);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $dbh = new PDO($dsn);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        break;
+
+    case 'mysqli':
+        $dbh = mysqli_connect($db_cfg['DB_HOST'], $db_cfg['DB_USER'], $db_cfg['DB_PASS'], $db_cfg['DB_NAME']);
+        break;
+
+    case 'mysql_old':
+        $dbh = mysql_connect($db_cfg['DB_HOST'], $db_cfg['DB_USER'], $db_cfg['DB_PASS']);
+        mysql_select_db($db_cfg['DB_NAME']);
+        break;
+
+    default:
+        die('DB_TYPE is invalid in database configuration, check database.ini');
         break;
 }
 
 require_once './launchphp/Model.php';
-Model::setPDO($pdo);
+Model::setDBHandle($dbh);
 
 
 /* ------------------------------------------------------------------------- */
