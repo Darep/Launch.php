@@ -12,14 +12,13 @@
  * @param $title Page title
  */
 function site_header($title = '') {
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
     <title><?php if (!empty($title)) echo $title, ' &ndash; ' ?>Launch.php</title>
-   
+
     <link rel="stylesheet" href="<?php echo SITE_BASE ?>content/css/style.css" type="text/css" media="screen" />
 </head>
 <body>

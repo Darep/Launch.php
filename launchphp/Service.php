@@ -1,9 +1,4 @@
 <?php
-/*!
- * Service base class
- * Mainly just contains helpers
- */
-
 
 class Service
 {
@@ -20,20 +15,20 @@ class Service
     {
         // TODO: if !debug, give user server error 500 and save the information below to a log file
         echo "<pre>Error!: $msg\n";
-        
+
         $bt = debug_backtrace();
         foreach($bt as $line) {
             $args = var_export($line['args'], true);
             echo "{$line['function']}($args) at {$line['file']}:{$line['line']}\n";
         }
         echo "</pre>";
-        
+
         die();
     }
 
     /**
      * Create a SQL "UPDATE ..." string based on a bunch of arrays.
-     * 
+     *
      * @param array $data Data to be updated as (key = column => value = data)
      * @param string $updates SQL UPDATE string
      * @param array $params PDO parameters

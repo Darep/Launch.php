@@ -1,24 +1,16 @@
 <?php
-/*!
- * DAO base class
- */
 
-class Dao
-{
+class Model {
     protected $table = null;
     protected static $dbh = null; // database handle, shared by all the DAOs
-    
+
     function __construct(PDO $pdo = null)
     {
-        if (!isset($pdo)) {
-            $pdo = self::$dbh;
-        }
-        
-        if (!isset($pdo)) {
+        if (!isset($pdo) && !isset(self::$dbh)) {
             // TODO: print out recovery instructions for users
-            throw new DomainException('No PDO object defined for DAO(s)! Critical failure!');
+            throw new DomainException('No database configured! Critical failure!');
         }
-        
+
         self::$dbh = $pdo;
     }
 

@@ -1,10 +1,4 @@
 <?php
-/*!
- * Example User DAO, included in the Launch.php core
- */
-
-// no need to include Dao.php, it is already included by core.php
- 
 class UserDao extends Dao
 {
     protected $table = 'user';
@@ -12,10 +6,10 @@ class UserDao extends Dao
     public function getUser($id)
     {
         $stmt = self::$dbh->prepare(
-			'SELECT *
-			 FROM '. $this->table .'
-			 WHERE id = '. (int)$id .'
-			 LIMIT 1'
+            'SELECT *
+             FROM '. $this->table .'
+             WHERE id = '. (int)$id .'
+             LIMIT 1'
         );
         
         $success = $stmt->execute();
@@ -23,22 +17,22 @@ class UserDao extends Dao
         
         return $row;
     }
-	
+    
     public function createUser($user)
     {
-		$stmt = self::$dbh->prepare(
-			'INSERT INTO '. $this->table .' (username, email, password)
-					VALUES (:username, :email, :password)');
+        $stmt = self::$dbh->prepare(
+            'INSERT INTO '. $this->table .' (username, email, password)
+                    VALUES (:username, :email, :password)');
 
-		$params = array(
-			':username' => $user['username'],
-			':email'    => $user['email'],
-			':password' => $user['password']
-		);
-		
-		$affected_rows = $stmt->execute($params);
+        $params = array(
+            ':username' => $user['username'],
+            ':email'    => $user['email'],
+            ':password' => $user['password']
+        );
+        
+        $affected_rows = $stmt->execute($params);
 
         return $affected_rows;
     }
-		
+
 }

@@ -1,4 +1,6 @@
-.htaccess
-index.php
-config.ini
-local.db
+.DS_Store
+._*
+Thumbs.db
+
+/.htaccess
+/local.db
