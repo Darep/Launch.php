@@ -43,9 +43,14 @@ define('SITE_BASE', $site_base);
 
 $url = $_SERVER['REQUEST_URI'];
 
+if ($url[strlen($url) - 1] !== '/') {
+    $url = $url . '/';
+}
+
 if (SITE_BASE !== '/')
 {
-    $url = str_replace(SITE_BASE, '', $url);
+    // remove site base from the start of the string
+    $url = str_replace($site_base, '', $url);
 }
 else
 {
@@ -100,7 +105,8 @@ switch ($db_cfg['DB_TYPE']) {
 
     case 'mysql_old':
         $dbh = mysql_connect($db_cfg['DB_HOST'], $db_cfg['DB_USER'], $db_cfg['DB_PASS']);
-        mysql_select_db($db_cfg['DB_NAME']);
+        mysql_select_db($db_cfg['DB_NAME'], $dbh);
+        mysql_query("SET NAMES 'UTF8'");
         break;
 
     default:
@@ -168,7 +174,7 @@ require_once './launchphp/Service.php';
 
 /* ------------------------------------------------------------------------- */
 // Include modules
-#include './modules.php';
+//include './modules/mysql_magic.php';
 
 
 /* ------------------------------------------------------------------------- */

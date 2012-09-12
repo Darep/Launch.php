@@ -11,6 +11,7 @@ class Controller
     protected $is_ajax;
     protected $isAjax;
     protected $method;
+    protected $view_model;
 
     function __construct($params)
     {
@@ -32,14 +33,14 @@ class Controller
 
     public function notFound()
     {
-        $this->renderView('404.php');
+        $this->renderView('404');
         exit;
     }
 
 
     public function noAuth()
     {
-        $this->renderView('no-auth.php');
+        $this->renderView('no-auth');
         exit;
     }
 
@@ -56,6 +57,10 @@ class Controller
 
     protected function renderView($view, $view_model = null)
     {
+        if (!empty($this->view_model)) {
+            $view_model = array_merge($this->view_model, $view_model);
+        }
+
         if (!empty($view_model)) {
             extract($view_model);
         }
